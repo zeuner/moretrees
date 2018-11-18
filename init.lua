@@ -30,12 +30,14 @@ if io.open(worldpath.."/moretrees_settings.txt","r") then
 end
 
 -- Boilerplate to support localized strings if intllib mod is installed.
-local S
-if minetest.get_modpath("intllib") then
-	S = intllib.Getter()
-else
-	S = function(s) return s end
-end
+local MP = minetest.get_modpath(
+    minetest.get_current_modname(
+    )
+)
+
+local S, NS = dofile(
+    MP .. "/intllib.lua"
+)
 moretrees.intllib = S
 
 -- clone node
